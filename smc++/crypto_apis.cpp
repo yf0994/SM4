@@ -16,17 +16,22 @@ namespace crypto
 {
     bool Apis::encryptBlock(Block &block)
     {
-        Block out;
-        SM4::Apis::encrypt((unsigned char *)block.constData(),CRYPTO_BLOCK_SIZE,(unsigned char *)out.data());
-        memcpy(block.data(), out.data(), CRYPTO_BLOCK_SIZE);
+        unsigned char buf[CRYPTO_BLOCK_SIZE];
+        memcpy(buf, block.constData(), CRYPTO_BLOCK_SIZE);
+        SM4::Apis::encrypt(buf,CRYPTO_BLOCK_SIZE,buf);
+        printf("++++++++[%s]\n",buf);
+        memcpy(block.data(), buf, CRYPTO_BLOCK_SIZE);
         return true;
     }
     
     bool Apis::decryptBlock(Block &block)
     {
-        Block out;
-        SM4::Apis::decrypt((unsigned char *)block.constData(),CRYPTO_BLOCK_SIZE,(unsigned char *)out.data());
-        memcpy(block.data(), out.data(), CRYPTO_BLOCK_SIZE);
+        unsigned char buf[CRYPTO_BLOCK_SIZE];
+        memcpy(buf, block.constData(), CRYPTO_BLOCK_SIZE);
+        printf("--------[%s]\n",buf);
+        SM4::Apis::decrypt(buf,CRYPTO_BLOCK_SIZE,buf);
+        memcpy(block.data(), buf, CRYPTO_BLOCK_SIZE);
+        
         return true;
     }
     
@@ -53,21 +58,20 @@ namespace crypto
         return true;
     }
 
-    string Apis::encryptBlocksTo(BlockList &blocks,char * buf)
+    bool Apis::encryptBlocksTo(BlockList &blocks,char * buf)
     {
         BlockListConstIterator iter;
         string str;
         for(iter = blocks.cbegin(); iter != blocks.cend(); ++iter)
         {
-            
-            SM4::Apis::encrypt((unsigned char *)iter -> constData(),CRYPTO_BLOCK_SIZE,(unsigned char *)buf);
-//            strcat(buf, out.data());
-            printf("%s",buf);
-            str += string(buf);
+            unsigned char tmpBuf[CRYPTO_BLOCK_SIZE];
+            memcpy(tmpBuf, iter -> constData(), CRYPTO_BLOCK_SIZE);
+            SM4::Apis::encrypt(tmpBuf,CRYPTO_BLOCK_SIZE,tmpBuf);
+            printf("++++++++++[%s]\n",tmpBuf);
+            memcpy(buf, tmpBuf, CRYPTO_BLOCK_SIZE);
             buf += CRYPTO_BLOCK_SIZE;
         }
-//        printf("%d\n",i);
-        return str;
+        return true;
     }
     
     bool Apis::decryptBlocksTo(BlockList &blocks,char *buf)
@@ -75,14 +79,14 @@ namespace crypto
         BlockListConstIterator iter;
         for(iter = blocks.cbegin();iter != blocks.cend(); ++iter)
         {
-            
-            SM4::Apis::decrypt((unsigned char *)iter -> constData(),CRYPTO_BLOCK_SIZE,(unsigned char *)buf);
-//            printf("%s",out.data());
+            printf("-----------[%s]\n",iter -> constData());
+            unsigned char tmpBuf[CRYPTO_BLOCK_SIZE];
+            memcpy(tmpBuf, iter -> constData(), CRYPTO_BLOCK_SIZE);
+            SM4::Apis::decrypt(tmpBuf,CRYPTO_BLOCK_SIZE,tmpBuf);
+//            printf("!!!!!!!!!!!![%s]\n",tmpBuf);
+            memcpy(buf, tmpBuf, CRYPTO_BLOCK_SIZE);
             buf += CRYPTO_BLOCK_SIZE;
-//            strcat(buf, out.data());
         }
-        
-        
         return true;
     }
 }

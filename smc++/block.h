@@ -81,7 +81,7 @@ namespace crypto
                 buf += CRYPTO_BLOCK_SIZE;
             }
             if (rest > 0)
-                blocks.push_back(Block(buf, rest));
+                blocks.push_back(Block(buf, CRYPTO_BLOCK_SIZE));
             
             return blocks;
         }

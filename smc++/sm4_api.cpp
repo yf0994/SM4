@@ -9,6 +9,7 @@
 #include "sm4.h"
 #include "sm4_api.h"
 #include <stdio.h>
+#include <string.h>
 namespace SM4
 {
     bool Apis::initKey(UserKey *uk)
@@ -16,7 +17,7 @@ namespace SM4
         int i;
         for(i = 0; i < CRYPTO_BLOCK_SIZE; i++)
         {
-            uk -> data[i] = i + 32;
+            uk -> data[i] = i + CRYPTO_BLOCK_SIZE;
         }
         return true;
     }

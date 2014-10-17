@@ -26,7 +26,7 @@ namespace crypto
         static bool encryptBlocks(BlockList &blocks);
         static bool decrpytBlocks(BlockList &blocks);
         
-        static string encryptBlocksTo(BlockList &blocks,char *buf);
+        static bool encryptBlocksTo(BlockList &blocks,char *buf);
         static bool decryptBlocksTo(BlockList &blocks,char *buf);
         
         
