@@ -35,31 +35,22 @@ int main()
     memset(encryptData, 0, len);
     memset(decryptData, 0, len);
     crypto::Apis::encryptBlocks(blockList);
-//    string ret = crypto::Apis::encryptBlocksTo(blockList, encryptData);
-    crypto::BlockListIterator iter;
-    string ret ;
-            for(iter = blockList.begin(); iter != blockList.end(); ++iter)
-            {
-//                printf("%s",iter->data());
-                ret += string(iter -> data());
-            }
-    printf("%s\n",ret.c_str());
-    printf("\n---------------\n");
-//    printf("%s\n",ret.c_str());
-//     printf("\n---------------%lu\n",ret.size());
-//    printf("----%s\n",encryptData);
-//        crypto::BlockList blockList1 = crypto::Utils::toBlocks(ret.c_str(), len);
-//        crypto::Apis::decryptBlocksTo(blockList1, decryptData);
-//    printf("%s\n",decryptData);
 
-    crypto::Apis::decrpytBlocks(blockList);
+    crypto::BlockListIterator iter;
+    string ret;
     for(iter = blockList.begin(); iter != blockList.end(); ++iter)
     {
-        printf("%s",iter->data());
+        ret += string(iter -> data());
     }
-//        crypto::BlockListIterator iter;
+    printf("%s\n",ret.c_str());
+    printf("\n---------------\n");
+
+    crypto::BlockList blockList1 = crypto::Utils::toBlocks(ret.c_str(), len);
+    crypto::Apis::decryptBlocksTo(blockList1, decryptData);
+    printf("%s\n",decryptData);
+
+
     
     printf("\n");
-    printf("%d\n",strlen(encryptData));
     return 0;
 }

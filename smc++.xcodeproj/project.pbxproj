@@ -10,7 +10,7 @@
 		74CE493519EB83080099987B /* sm4_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74CE493319EB83080099987B /* sm4_api.cpp */; };
 		74CE493919EB837C0099987B /* crypto_apis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74CE493719EB837C0099987B /* crypto_apis.cpp */; };
 		74DCD62619F0C65600FCBC8D /* data_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74DCD62419F0C65600FCBC8D /* data_helper.cpp */; };
-		74F06FE619D4FC2500FCEEF7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74F06FE519D4FC2500FCEEF7 /* main.cpp */; };
+		74DCD62819F13ADF00FCBC8D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74F06FE519D4FC2500FCEEF7 /* main.cpp */; };
 		74F06FF419D5027600FCEEF7 /* sm4.c in Sources */ = {isa = PBXBuildFile; fileRef = 74F06FF119D5027600FCEEF7 /* sm4.c */; };
 /* End PBXBuildFile section */
 
@@ -143,8 +143,8 @@
 				74F06FF419D5027600FCEEF7 /* sm4.c in Sources */,
 				74CE493919EB837C0099987B /* crypto_apis.cpp in Sources */,
 				74DCD62619F0C65600FCBC8D /* data_helper.cpp in Sources */,
+				74DCD62819F13ADF00FCBC8D /* main.cpp in Sources */,
 				74CE493519EB83080099987B /* sm4_api.cpp in Sources */,
-				74F06FE619D4FC2500FCEEF7 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
